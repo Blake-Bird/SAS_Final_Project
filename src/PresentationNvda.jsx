@@ -1,6 +1,6 @@
 // PresentationNvda.jsx
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { slides } from './slides.jsx';
+import { slides } from './slides_nvda.jsx';
 import './styles_nvda.css';
 
 export default function PresentationNvda() {
@@ -47,7 +47,7 @@ export default function PresentationNvda() {
     return () => window.removeEventListener('keydown', handleKey);
   }, [goNext, goPrev]);
 
-  // Ensure focus for key events
+  // Keep focus so keys always work
   useEffect(() => {
     if (containerRef.current) {
       containerRef.current.focus();
@@ -55,8 +55,8 @@ export default function PresentationNvda() {
   }, [slideIndex]);
 
   const onBackgroundClick = (e) => {
-    // Only advance when clicking on the slide content
-    if (e.target.closest('.nvda-inner')) {
+    // Advance only when clicking on the main slide area
+    if (e.target.closest('.slide-inner')) {
       goNext();
     }
   };
@@ -66,35 +66,15 @@ export default function PresentationNvda() {
 
   return (
     <div
-      className="nvda-shell"
+      className="presentation-shell"
       tabIndex={-1}
       ref={containerRef}
       onClick={onBackgroundClick}
     >
-      <div className="nvda-stage">
-        <div className={`nvda-frame ${slideDirectionClass}`}>
-          <div key={currentSlide.id} className="nvda-inner">
+      <div className="presentation-stage">
+        <div className={`slide-frame ${slideDirectionClass}`}>
+          <div key={currentSlide.id} className="slide-inner">
             {currentSlide.render(step)}
-          </div>
-
-          {/* Bottom timeline bar */}
-          <div className="bottom-timeline">
-            <div
-              className="bottom-timeline-fill"
-              style={{
-                width: `${(step / currentSlide.maxStep) * 100}%`,
-              }}
-            />
-          </div>
-
-          {/* Presenter HUD */}
-          <div className="presenter-hud">
-            <span>
-              Slide {slideIndex + 1} / {slides.length}
-            </span>
-            <span>
-              Step {step} / {currentSlide.maxStep}
-            </span>
           </div>
         </div>
       </div>
