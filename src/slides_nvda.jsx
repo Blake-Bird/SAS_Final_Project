@@ -1,14 +1,15 @@
-// slides.jsx
-import React from "react";
+// slides_nvda.jsx
+import React from 'react';
 
 export const slides = [
-  // 1. NVIDIA – hero splash, history + forecast hint
+  // 1. NVIDIA – hero splash
   {
     id: 1,
     maxStep: 4,
     render(step) {
       return (
         <div className="nvda-slide">
+          {/* Top strip */}
           <div className="nvda-topbar">
             <div className="nvda-label">
               <span className="nvda-label-dot" />
@@ -17,54 +18,61 @@ export const slides = [
             <div className="nvda-chip">2018–2030</div>
           </div>
 
+          {/* Title */}
           <div className="nvda-heading-row">
             <div className="nvda-heading">NVIDIA</div>
           </div>
 
+          {/* Two-column hero layout */}
           <div className="nvda-row">
-            {/* Left: glowing NVDA orb */}
+            {/* Left: main world + line */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 1 ? "glass-reveal emphasis" : "hidden"
+                  step >= 1 ? 'glass-reveal emphasis' : 'hidden'
                 }`}
               >
                 <div className="nvda-chart">
                   <div className="nvda-chart-canvas">
-                    <div className="world-layer history anim-world-history" />
+                    {/* History vs forecast worlds */}
+                    <div
+                      className={`world-layer history ${
+                        step >= 1 ? 'anim-world-history' : ''
+                      }`}
+                    />
                     {step >= 3 && (
                       <div className="world-layer forecast anim-world-forecast" />
                     )}
 
-                    {/* Graph line – 1.1 draw-in */}
+                    {/* Draw-in trajectory */}
                     <div className="graph-line">
                       <div
                         className={`graph-line-path ${
-                          step >= 2 ? "anim-graph-draw" : ""
+                          step >= 2 ? 'anim-graph-draw' : ''
                         }`}
                       />
-                      {/* Historical points */}
+                      {/* Key points – early years */}
                       {[
-                        { left: "6%", top: "70%" },
-                        { left: "22%", top: "64%" },
-                        { left: "38%", top: "56%" },
-                        { left: "54%", top: "44%" },
-                        { left: "70%", top: "36%" },
+                        { left: '8%', top: '72%' },
+                        { left: '24%', top: '66%' },
+                        { left: '40%', top: '59%' },
+                        { left: '56%', top: '45%' },
+                        { left: '72%', top: '37%' },
                       ].map((p, idx) => (
                         <div
                           key={idx}
                           className={`graph-point ${
-                            step >= 2 + (idx > 0 ? 1 : 0) ? "visible" : ""
+                            step >= 2 ? 'visible' : ''
                           }`}
                           style={p}
                         />
                       ))}
-                      {/* Forecast point */}
+                      {/* Forecast point – 2030 */}
                       <div
                         className={`graph-point ${
-                          step >= 4 ? "visible" : ""
+                          step >= 4 ? 'visible' : ''
                         }`}
-                        style={{ left: "90%", top: "28%" }}
+                        style={{ left: '90%', top: '28%' }}
                       />
                     </div>
                   </div>
@@ -72,25 +80,25 @@ export const slides = [
               </div>
             </div>
 
-            {/* Right: big 2030 number with halo */}
+            {/* Right: 2030 big call */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 2 ? "glass-reveal layer-rise" : "hidden"
+                  step >= 2 ? 'glass-reveal layer-rise' : 'hidden'
                 }`}
               >
                 <div className="stat-number-sub">2030 Rev</div>
-                <div className={`halo-wrap ${step >= 3 ? "anim-halo" : ""}`}>
+                <div className={`halo-wrap ${step >= 3 ? 'anim-halo' : ''}`}>
                   <div className="halo-ring" />
                   <div
                     className={`stat-number ${
-                      step >= 4 ? "stat-pulse" : ""
+                      step >= 4 ? 'stat-pulse' : ''
                     }`}
                   >
                     $XXXB
                   </div>
                 </div>
-                <div className="stat-number-sub">Model output</div>
+                <div className="stat-number-sub">Model View</div>
               </div>
             </div>
           </div>
@@ -99,7 +107,7 @@ export const slides = [
     },
   },
 
-  // 2. Context – simple segments, no paragraphs
+  // 2. Context – NVDA world
   {
     id: 2,
     maxStep: 3,
@@ -115,57 +123,54 @@ export const slides = [
           </div>
 
           <div className="nvda-heading-row">
-            <div className="nvda-heading">Context</div>
+            <div className="nvda-heading">CONTEXT</div>
           </div>
 
           <div className="nvda-row">
-            {/* Left: simple “world of NVDA” blobs */}
+            {/* Left: sector scatter */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 1 ? "glass-reveal layer-rise" : "hidden"
+                  step >= 1 ? 'glass-reveal layer-rise' : 'hidden'
                 }`}
               >
                 <div className="nvda-chart">
                   <div className="nvda-chart-canvas scatter-layer">
-                    {/* AI */}
                     <div
                       className={`scatter-dot ${
-                        step >= 1 ? "anim-data-bloom" : ""
+                        step >= 1 ? 'anim-data-bloom' : ''
                       }`}
-                      style={{ left: "32%", top: "30%" }}
+                      style={{ left: '28%', top: '32%' }}
                     />
-                    {/* Gaming */}
                     <div
                       className={`scatter-dot ${
-                        step >= 1 ? "anim-data-bloom" : ""
+                        step >= 1 ? 'anim-data-bloom' : ''
                       }`}
-                      style={{ left: "68%", top: "42%" }}
+                      style={{ left: '68%', top: '40%' }}
                     />
-                    {/* Data center */}
                     <div
                       className={`scatter-dot ${
-                        step >= 2 ? "anim-data-bloom" : ""
+                        step >= 2 ? 'anim-data-bloom' : ''
                       }`}
-                      style={{ left: "48%", top: "58%" }}
+                      style={{ left: '52%', top: '60%' }}
                     />
-                    {/* Auto */}
                     <div
                       className={`scatter-dot ${
-                        step >= 3 ? "anim-data-bloom" : ""
+                        step >= 3 ? 'anim-data-bloom' : ''
                       }`}
-                      style={{ left: "26%", top: "60%" }}
+                      style={{ left: '30%', top: '65%' }}
                     />
+                    <div className="data-line-overlay" />
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Right: tiny chips (still ≤2–3 words each) */}
+            {/* Right: clean chips */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 1 ? "glass-reveal layer-rise-delayed" : "hidden"
+                  step >= 1 ? 'glass-reveal layer-rise-delayed' : 'hidden'
                 }`}
               >
                 <div className="interactive-strip">
@@ -182,7 +187,7 @@ export const slides = [
     },
   },
 
-  // 3. Process – pipeline + timeline sweep
+  // 3. Process – flow
   {
     id: 3,
     maxStep: 4,
@@ -198,22 +203,23 @@ export const slides = [
           </div>
 
           <div className="nvda-heading-row">
-            <div className="nvda-heading">Process</div>
+            <div className="nvda-heading">PROCESS</div>
           </div>
 
           <div className="nvda-row">
+            {/* Left: pipeline timeline */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 1 ? "glass-reveal layer-rise" : "hidden"
+                  step >= 1 ? 'glass-reveal layer-rise' : 'hidden'
                 }`}
               >
                 <div className="timeline-strip">
-                  {["Raw", "Clean", "Ratios", "Proj"].map((label, idx) => (
+                  {['Raw', 'Clean', 'Ratios', 'Proj'].map((label, idx) => (
                     <div key={label} className="timeline-node">
                       <div
                         className={`timeline-dot ${
-                          step >= idx + 2 ? "active" : ""
+                          step >= idx + 2 ? 'active' : ''
                         }`}
                       />
                       <div>{label}</div>
@@ -221,17 +227,18 @@ export const slides = [
                   ))}
                   <div
                     className={`timeline-sweep ${
-                      step >= 3 ? "anim-timeline-sweep" : ""
+                      step >= 3 ? 'anim-timeline-sweep' : ''
                     }`}
                   />
                 </div>
               </div>
             </div>
 
+            {/* Right: source chips */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 2 ? "glass-reveal layer-rise-delayed" : "hidden"
+                  step >= 2 ? 'glass-reveal layer-rise-delayed' : 'hidden'
                 }`}
               >
                 <div className="interactive-strip">
@@ -248,12 +255,12 @@ export const slides = [
     },
   },
 
-  // 4. Inflection – hot bars around key years
+  // 4. Inflection – hot years
   {
     id: 4,
     maxStep: 3,
     render(step) {
-      const years = ["18", "19", "20", "21", "22", "23"];
+      const years = ['18', '19', '20', '21', '22', '23'];
       return (
         <div className="nvda-slide">
           <div className="nvda-topbar">
@@ -265,14 +272,15 @@ export const slides = [
           </div>
 
           <div className="nvda-heading-row">
-            <div className="nvda-heading">Inflection</div>
+            <div className="nvda-heading">INFLECTION</div>
           </div>
 
           <div className="nvda-row">
+            {/* Bars with heat fade */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 1 ? "glass-reveal emphasis" : "hidden"
+                  step >= 1 ? 'glass-reveal emphasis' : 'hidden'
                 }`}
               >
                 <div className="nvda-chart">
@@ -280,7 +288,15 @@ export const slides = [
                     {years.map((y, idx) => {
                       const isHot = idx >= 2; // 2020–2023
                       const target =
-                        idx === 2 ? "60%" : idx === 3 ? "80%" : idx === 4 ? "88%" : idx === 5 ? "92%" : "40%";
+                        idx === 2
+                          ? '60%'
+                          : idx === 3
+                          ? '82%'
+                          : idx === 4
+                          ? '90%'
+                          : idx === 5
+                          ? '94%'
+                          : '42%';
                       return (
                         <div key={y} className="bar-column">
                           <div className="bar-shell">
@@ -288,11 +304,11 @@ export const slides = [
                               className={`bar-fill ${
                                 step >= 2
                                   ? isHot
-                                    ? "hot"
-                                    : "normal"
-                                  : ""
+                                    ? 'hot'
+                                    : 'normal'
+                                  : ''
                               }`}
-                              style={{ "--bar-target": target }}
+                              style={{ '--bar-target': target }}
                             />
                           </div>
                           <div className="bar-year">{y}</div>
@@ -304,14 +320,19 @@ export const slides = [
               </div>
             </div>
 
+            {/* Short label */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 2 ? "glass-reveal layer-rise-delayed" : "hidden"
+                  step >= 2 ? 'glass-reveal layer-rise-delayed' : 'hidden'
                 }`}
               >
                 <div className="stat-number-sub">Shift</div>
-                <div className={`stat-number ${step >= 3 ? "stat-pulse" : ""}`}>
+                <div
+                  className={`stat-number ${
+                    step >= 3 ? 'stat-pulse' : ''
+                  }`}
+                >
                   AI Run
                 </div>
               </div>
@@ -322,12 +343,12 @@ export const slides = [
     },
   },
 
-  // 5. Revenue – line plus bars
+  // 5. Revenue – history + 2030
   {
     id: 5,
     maxStep: 4,
     render(step) {
-      const years = ["18", "19", "20", "21", "22", "23", "30"];
+      const years = ['18', '19', '20', '21', '22', '23', '30'];
       return (
         <div className="nvda-slide">
           <div className="nvda-topbar">
@@ -339,14 +360,15 @@ export const slides = [
           </div>
 
           <div className="nvda-heading-row">
-            <div className="nvda-heading">Revenue</div>
+            <div className="nvda-heading">REVENUE</div>
           </div>
 
           <div className="nvda-row">
+            {/* Line points */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 1 ? "glass-reveal layer-rise" : "hidden"
+                  step >= 1 ? 'glass-reveal layer-rise' : 'hidden'
                 }`}
               >
                 <div className="nvda-chart">
@@ -354,7 +376,7 @@ export const slides = [
                     <div className="graph-line">
                       <div
                         className={`graph-line-path ${
-                          step >= 2 ? "anim-graph-draw" : ""
+                          step >= 2 ? 'anim-graph-draw' : ''
                         }`}
                       />
                       {years.map((y, idx) => (
@@ -362,21 +384,21 @@ export const slides = [
                           key={y}
                           className={`graph-point ${
                             step >= 3 && idx <= 5
-                              ? "visible"
+                              ? 'visible'
                               : step >= 4 && idx === 6
-                              ? "visible"
-                              : ""
+                              ? 'visible'
+                              : ''
                           }`}
                           style={{
                             left: `${8 + idx * 13}%`,
                             top:
                               idx < 2
-                                ? "68%"
+                                ? '68%'
                                 : idx < 4
-                                ? "56%"
+                                ? '56%'
                                 : idx < 6
-                                ? "42%"
-                                : "30%",
+                                ? '42%'
+                                : '30%',
                           }}
                         />
                       ))}
@@ -386,16 +408,17 @@ export const slides = [
               </div>
             </div>
 
+            {/* CAGR */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 2 ? "glass-reveal layer-rise-delayed" : "hidden"
+                  step >= 2 ? 'glass-reveal layer-rise-delayed' : 'hidden'
                 }`}
               >
                 <div className="stat-number-sub">CAGR</div>
                 <div
                   className={`stat-number ${
-                    step >= 4 ? "stat-pulse" : ""
+                    step >= 4 ? 'stat-pulse' : ''
                   }`}
                 >
                   XX%
@@ -409,7 +432,7 @@ export const slides = [
     },
   },
 
-  // 6. Profit – NI + FCF
+  // 6. Profit – NI & FCF
   {
     id: 6,
     maxStep: 3,
@@ -425,7 +448,7 @@ export const slides = [
           </div>
 
           <div className="nvda-heading-row">
-            <div className="nvda-heading">Profit</div>
+            <div className="nvda-heading">PROFIT</div>
           </div>
 
           <div className="nvda-row">
@@ -433,27 +456,25 @@ export const slides = [
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 1 ? "glass-reveal layer-rise" : "hidden"
+                  step >= 1 ? 'glass-reveal layer-rise' : 'hidden'
                 }`}
               >
                 <div className="stat-number-sub">NI</div>
                 <div
                   className={`stat-number ${
-                    step >= 2 ? "stat-pulse" : ""
+                    step >= 2 ? 'stat-pulse' : ''
                   }`}
                 >
                   ↑
                 </div>
                 <div className="nvda-chart">
                   <div className="nvda-chart-canvas nvda-bar-chart">
-                    {[40, 44, 52, 68, 82, 90].map((h, idx) => (
+                    {[40, 46, 54, 70, 86, 94].map((h, idx) => (
                       <div key={idx} className="bar-column">
                         <div className="bar-shell">
                           <div
-                            className={`bar-fill normal ${
-                              step >= 2 ? "" : ""
-                            }`}
-                            style={{ "--bar-target": `${h}%` }}
+                            className="bar-fill normal"
+                            style={{ '--bar-target': `${h}%` }}
                           />
                         </div>
                       </div>
@@ -467,25 +488,25 @@ export const slides = [
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 2 ? "glass-reveal layer-rise-delayed" : "hidden"
+                  step >= 2 ? 'glass-reveal layer-rise-delayed' : 'hidden'
                 }`}
               >
                 <div className="stat-number-sub">FCF</div>
                 <div
                   className={`stat-number ${
-                    step >= 3 ? "stat-pulse" : ""
+                    step >= 3 ? 'stat-pulse' : ''
                   }`}
                 >
                   ↑
                 </div>
                 <div className="nvda-chart">
                   <div className="nvda-chart-canvas nvda-bar-chart">
-                    {[35, 42, 54, 70, 88, 95].map((h, idx) => (
+                    {[38, 45, 58, 74, 90, 97].map((h, idx) => (
                       <div key={idx} className="bar-column">
                         <div className="bar-shell">
                           <div
-                            className={`bar-fill normal`}
-                            style={{ "--bar-target": `${h}%` }}
+                            className="bar-fill normal"
+                            style={{ '--bar-target': `${h}%` }}
                           />
                         </div>
                       </div>
@@ -500,12 +521,12 @@ export const slides = [
     },
   },
 
-  // 7. Margins – heat-ish dual bars
+  // 7. Margins – gross vs net heat
   {
     id: 7,
     maxStep: 3,
     render(step) {
-      const years = ["18", "19", "20", "21", "22", "23"];
+      const years = ['18', '19', '20', '21', '22', '23'];
       return (
         <div className="nvda-slide">
           <div className="nvda-topbar">
@@ -517,14 +538,15 @@ export const slides = [
           </div>
 
           <div className="nvda-heading-row">
-            <div className="nvda-heading">Margins</div>
+            <div className="nvda-heading">MARGINS</div>
           </div>
 
           <div className="nvda-row">
+            {/* Heat bars */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 1 ? "glass-reveal emphasis" : "hidden"
+                  step >= 1 ? 'glass-reveal emphasis' : 'hidden'
                 }`}
               >
                 <div className="nvda-chart">
@@ -533,9 +555,9 @@ export const slides = [
                       <div key={y} className="bar-column">
                         <div className="bar-shell">
                           <div
-                            className={`bar-fill hot`}
+                            className="bar-fill hot"
                             style={{
-                              "--bar-target": `${60 + idx * 4}%`,
+                              '--bar-target': `${60 + idx * 4}%`,
                             }}
                           />
                         </div>
@@ -547,16 +569,17 @@ export const slides = [
               </div>
             </div>
 
+            {/* Label */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 2 ? "glass-reveal layer-rise-delayed" : "hidden"
+                  step >= 2 ? 'glass-reveal layer-rise-delayed' : 'hidden'
                 }`}
               >
                 <div className="stat-number-sub">Resilience</div>
                 <div
                   className={`stat-number ${
-                    step >= 3 ? "stat-pulse" : ""
+                    step >= 3 ? 'stat-pulse' : ''
                   }`}
                 >
                   High
@@ -569,7 +592,7 @@ export const slides = [
     },
   },
 
-  // 8. Assets – structure blocks
+  // 8. Assets – stacked worlds
   {
     id: 8,
     maxStep: 2,
@@ -585,19 +608,23 @@ export const slides = [
           </div>
 
           <div className="nvda-heading-row">
-            <div className="nvda-heading">Assets</div>
+            <div className="nvda-heading">ASSETS</div>
           </div>
 
           <div className="nvda-row">
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 1 ? "glass-reveal layer-rise" : "hidden"
+                  step >= 1 ? 'glass-reveal layer-rise' : 'hidden'
                 }`}
               >
                 <div className="nvda-chart">
                   <div className="nvda-chart-canvas">
-                    <div className="world-layer history anim-world-history" />
+                    <div
+                      className={`world-layer history ${
+                        step >= 1 ? 'anim-world-history' : ''
+                      }`}
+                    />
                     {step >= 2 && (
                       <div className="world-layer forecast anim-world-forecast" />
                     )}
@@ -609,7 +636,7 @@ export const slides = [
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 1 ? "glass-reveal layer-rise-delayed" : "hidden"
+                  step >= 1 ? 'glass-reveal layer-rise-delayed' : 'hidden'
                 }`}
               >
                 <div className="stat-number-sub">Stack</div>
@@ -622,12 +649,12 @@ export const slides = [
     },
   },
 
-  // 9. Debt – simple bar visual
+  // 9. Debt – decline
   {
     id: 9,
     maxStep: 3,
     render(step) {
-      const years = ["18", "19", "20", "21", "22", "23"];
+      const years = ['18', '19', '20', '21', '22', '23'];
       return (
         <div className="nvda-slide">
           <div className="nvda-topbar">
@@ -639,14 +666,14 @@ export const slides = [
           </div>
 
           <div className="nvda-heading-row">
-            <div className="nvda-heading">Debt</div>
+            <div className="nvda-heading">DEBT</div>
           </div>
 
           <div className="nvda-row">
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 1 ? "glass-reveal" : "hidden"
+                  step >= 1 ? 'glass-reveal layer-rise' : 'hidden'
                 }`}
               >
                 <div className="nvda-chart">
@@ -655,9 +682,9 @@ export const slides = [
                       <div key={y} className="bar-column">
                         <div className="bar-shell">
                           <div
-                            className={`bar-fill normal`}
+                            className="bar-fill normal"
                             style={{
-                              "--bar-target": `${40 - idx * 3}%`,
+                              '--bar-target': `${44 - idx * 4}%`,
                             }}
                           />
                         </div>
@@ -672,13 +699,13 @@ export const slides = [
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 2 ? "glass-reveal layer-rise-delayed" : "hidden"
+                  step >= 2 ? 'glass-reveal layer-rise-delayed' : 'hidden'
                 }`}
               >
                 <div className="stat-number-sub">Trend</div>
                 <div
                   className={`stat-number ${
-                    step >= 3 ? "stat-pulse" : ""
+                    step >= 3 ? 'stat-pulse' : ''
                   }`}
                 >
                   Down
@@ -691,7 +718,7 @@ export const slides = [
     },
   },
 
-  // 10. Cash Flow – simple twin panels
+  // 10. Cash Flow
   {
     id: 10,
     maxStep: 3,
@@ -707,20 +734,21 @@ export const slides = [
           </div>
 
           <div className="nvda-heading-row">
-            <div className="nvda-heading">Cash Flow</div>
+            <div className="nvda-heading">CASH FLOW</div>
           </div>
 
           <div className="nvda-row">
+            {/* Op CF */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 1 ? "glass-reveal layer-rise" : "hidden"
+                  step >= 1 ? 'glass-reveal layer-rise' : 'hidden'
                 }`}
               >
                 <div className="stat-number-sub">Op</div>
                 <div
                   className={`stat-number ${
-                    step >= 2 ? "stat-pulse" : ""
+                    step >= 2 ? 'stat-pulse' : ''
                   }`}
                 >
                   Strong
@@ -728,16 +756,17 @@ export const slides = [
               </div>
             </div>
 
+            {/* FCF */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 2 ? "glass-reveal layer-rise-delayed" : "hidden"
+                  step >= 2 ? 'glass-reveal layer-rise-delayed' : 'hidden'
                 }`}
               >
                 <div className="stat-number-sub">FCF</div>
                 <div
                   className={`stat-number ${
-                    step >= 3 ? "stat-pulse" : ""
+                    step >= 3 ? 'stat-pulse' : ''
                   }`}
                 >
                   Strong
@@ -750,7 +779,7 @@ export const slides = [
     },
   },
 
-  // 11. Ratios – quick 3-block health view
+  // 11. Ratios – health
   {
     id: 11,
     maxStep: 3,
@@ -766,14 +795,15 @@ export const slides = [
           </div>
 
           <div className="nvda-heading-row">
-            <div className="nvda-heading">Ratios</div>
+            <div className="nvda-heading">RATIOS</div>
           </div>
 
           <div className="nvda-row">
+            {/* Ratio list */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 1 ? "glass-reveal layer-rise" : "hidden"
+                  step >= 1 ? 'glass-reveal layer-rise' : 'hidden'
                 }`}
               >
                 <div className="interactive-strip">
@@ -785,16 +815,17 @@ export const slides = [
               </div>
             </div>
 
+            {/* Score */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 2 ? "glass-reveal layer-rise-delayed" : "hidden"
+                  step >= 2 ? 'glass-reveal layer-rise-delayed' : 'hidden'
                 }`}
               >
                 <div className="stat-number-sub">Score</div>
                 <div
                   className={`stat-number ${
-                    step >= 3 ? "stat-pulse" : ""
+                    step >= 3 ? 'stat-pulse' : ''
                   }`}
                 >
                   High
@@ -823,22 +854,22 @@ export const slides = [
           </div>
 
           <div className="nvda-heading-row">
-            <div className="nvda-heading">Mismatch</div>
+            <div className="nvda-heading">MISMATCH</div>
           </div>
 
           <div className="nvda-row">
+            {/* Worlds */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 1 ? "glass-reveal layer-rise" : "hidden"
+                  step >= 1 ? 'glass-reveal layer-rise' : 'hidden'
                 }`}
               >
                 <div className="nvda-chart">
                   <div className="nvda-chart-canvas">
-                    {/* Price vs value worlds */}
                     <div
                       className={`world-layer history ${
-                        step >= 1 ? "anim-world-history" : ""
+                        step >= 1 ? 'anim-world-history' : ''
                       }`}
                     />
                     {step >= 3 && (
@@ -849,10 +880,11 @@ export const slides = [
               </div>
             </div>
 
+            {/* Chips */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 2 ? "glass-reveal layer-rise-delayed" : "hidden"
+                  step >= 2 ? 'glass-reveal layer-rise-delayed' : 'hidden'
                 }`}
               >
                 <div className="interactive-strip">
@@ -868,7 +900,7 @@ export const slides = [
     },
   },
 
-  // 13. 2030 – projected endpoint with halo
+  // 13. 2030 – final endpoint
   {
     id: 13,
     maxStep: 3,
@@ -888,20 +920,19 @@ export const slides = [
           </div>
 
           <div className="nvda-row">
+            {/* Big halo number */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 1 ? "glass-reveal emphasis" : "hidden"
+                  step >= 1 ? 'glass-reveal emphasis' : 'hidden'
                 }`}
               >
                 <div className="stat-number-sub">Rev</div>
-                <div
-                  className={`halo-wrap ${step >= 2 ? "anim-halo" : ""}`}
-                >
+                <div className={`halo-wrap ${step >= 2 ? 'anim-halo' : ''}`}>
                   <div className="halo-ring" />
                   <div
                     className={`stat-number ${
-                      step >= 3 ? "stat-pulse" : ""
+                      step >= 3 ? 'stat-pulse' : ''
                     }`}
                   >
                     $XXXB
@@ -910,10 +941,11 @@ export const slides = [
               </div>
             </div>
 
+            {/* Call */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 1 ? "glass-reveal layer-rise-delayed" : "hidden"
+                  step >= 1 ? 'glass-reveal layer-rise-delayed' : 'hidden'
                 }`}
               >
                 <div className="stat-number-sub">Call</div>
@@ -926,7 +958,7 @@ export const slides = [
     },
   },
 
-  // 14. Stress – risk boxes / heat
+  // 14. Stress – risk
   {
     id: 14,
     maxStep: 3,
@@ -942,14 +974,15 @@ export const slides = [
           </div>
 
           <div className="nvda-heading-row">
-            <div className="nvda-heading">Stress</div>
+            <div className="nvda-heading">STRESS</div>
           </div>
 
           <div className="nvda-row">
+            {/* Labels */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 1 ? "glass-reveal layer-rise" : "hidden"
+                  step >= 1 ? 'glass-reveal layer-rise' : 'hidden'
                 }`}
               >
                 <div className="interactive-strip">
@@ -960,10 +993,11 @@ export const slides = [
               </div>
             </div>
 
+            {/* Heat bars */}
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 2 ? "glass-reveal layer-rise-delayed" : "hidden"
+                  step >= 2 ? 'glass-reveal layer-rise-delayed' : 'hidden'
                 }`}
               >
                 <div className="nvda-chart">
@@ -973,7 +1007,7 @@ export const slides = [
                         <div className="bar-shell">
                           <div
                             className="bar-fill hot"
-                            style={{ "--bar-target": `${h}%` }}
+                            style={{ '--bar-target': `${h}%` }}
                           />
                         </div>
                       </div>
@@ -988,7 +1022,7 @@ export const slides = [
     },
   },
 
-  // 15. Use – how this is useful
+  // 15. Use – application
   {
     id: 15,
     maxStep: 2,
@@ -1004,14 +1038,14 @@ export const slides = [
           </div>
 
           <div className="nvda-heading-row">
-            <div className="nvda-heading">Use</div>
+            <div className="nvda-heading">USE</div>
           </div>
 
           <div className="nvda-row">
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 1 ? "glass-reveal layer-rise" : "hidden"
+                  step >= 1 ? 'glass-reveal layer-rise' : 'hidden'
                 }`}
               >
                 <div className="interactive-strip">
@@ -1027,7 +1061,7 @@ export const slides = [
     },
   },
 
-  // 16. Limits – constraints
+  // 16. Limits – guardrails
   {
     id: 16,
     maxStep: 2,
@@ -1043,14 +1077,14 @@ export const slides = [
           </div>
 
           <div className="nvda-heading-row">
-            <div className="nvda-heading">Limits</div>
+            <div className="nvda-heading">LIMITS</div>
           </div>
 
           <div className="nvda-row">
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 1 ? "glass-reveal layer-rise" : "hidden"
+                  step >= 1 ? 'glass-reveal layer-rise' : 'hidden'
                 }`}
               >
                 <div className="interactive-strip">
@@ -1066,7 +1100,7 @@ export const slides = [
     },
   },
 
-  // 17. Q&A – clean final slide
+  // 17. Q&A
   {
     id: 17,
     maxStep: 1,
@@ -1076,20 +1110,20 @@ export const slides = [
           <div className="nvda-topbar">
             <div className="nvda-label">
               <span className="nvda-label-dot" />
-              <span>Q&A</span>
+              <span>Q&amp;A</span>
             </div>
             <div className="nvda-chip">Discussion</div>
           </div>
 
           <div className="nvda-heading-row">
-            <div className="nvda-heading">Q&A</div>
+            <div className="nvda-heading">Q&amp;A</div>
           </div>
 
           <div className="nvda-row">
             <div className="nvda-col">
               <div
                 className={`glass-panel ${
-                  step >= 1 ? "glass-reveal layer-float emphasis" : "hidden"
+                  step >= 1 ? 'glass-reveal layer-float emphasis' : 'hidden'
                 }`}
               >
                 <div className="stat-number">Questions</div>
