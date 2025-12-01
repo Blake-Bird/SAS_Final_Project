@@ -1,6 +1,6 @@
 // PresentationNvda.jsx
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { slides } from './slides_nvda.jsx';
+import { slides } from './slides.jsx';
 import './styles_nvda.css';
 
 export default function PresentationNvda() {
@@ -47,7 +47,7 @@ export default function PresentationNvda() {
     return () => window.removeEventListener('keydown', handleKey);
   }, [goNext, goPrev]);
 
-  // Ensure focus for accessibility / key events on click
+  // Ensure focus for key events
   useEffect(() => {
     if (containerRef.current) {
       containerRef.current.focus();
@@ -55,8 +55,8 @@ export default function PresentationNvda() {
   }, [slideIndex]);
 
   const onBackgroundClick = (e) => {
-    // Only advance when clicking on the slide background, not controls
-    if (e.target.closest('.slide-inner')) {
+    // Only advance when clicking on the slide content
+    if (e.target.closest('.nvda-inner')) {
       goNext();
     }
   };
@@ -66,14 +66,14 @@ export default function PresentationNvda() {
 
   return (
     <div
-      className="presentation-shell"
+      className="nvda-shell"
       tabIndex={-1}
       ref={containerRef}
       onClick={onBackgroundClick}
     >
-      <div className="presentation-stage">
-        <div className={`slide-frame ${slideDirectionClass}`}>
-          <div key={currentSlide.id} className="slide-inner">
+      <div className="nvda-stage">
+        <div className={`nvda-frame ${slideDirectionClass}`}>
+          <div key={currentSlide.id} className="nvda-inner">
             {currentSlide.render(step)}
           </div>
 
@@ -82,12 +82,12 @@ export default function PresentationNvda() {
             <div
               className="bottom-timeline-fill"
               style={{
-                width: `${((step || 0) / currentSlide.maxStep) * 100}%`,
+                width: `${(step / currentSlide.maxStep) * 100}%`,
               }}
             />
           </div>
 
-          {/* Debug / presenter HUD */}
+          {/* Presenter HUD */}
           <div className="presenter-hud">
             <span>
               Slide {slideIndex + 1} / {slides.length}
