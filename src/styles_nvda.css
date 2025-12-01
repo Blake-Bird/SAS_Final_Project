@@ -1,0 +1,71 @@
+/* styles_nvda.css */
+
+/* RESET + ROOT */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: #020617; /* dark navy around stage */
+  color: #e5e7eb;
+}
+
+/* SHELL / STAGE */
+.presentation-shell {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, #020617 0%, #020617 55%, #000 100%);
+  outline: none;
+}
+
+.presentation-stage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-frame {
+  position: relative;
+  width: 92vw;
+  max-width: 1400px;
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  background: radial-gradient(circle at top, #020617, #020617 55%, #020617 100%);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(148, 163, 184, 0.12);
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+/* Directional slide transitions */
+.slide-forward {
+  animation: frameEnterForward 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.slide-backward {
+  animation: frameEnterBackward 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.slide-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction:
