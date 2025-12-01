@@ -331,7 +331,7 @@ body,
 }
 
 /* Dots bloom in */
-.anim-data-bloom .scatter-dot {
+.scatter-dot.anim-data-bloom {
   animation: dataBloom 680ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
